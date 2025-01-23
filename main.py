@@ -82,6 +82,16 @@ async def scrape_product(url: str) -> dict:
         raise
 
 
+@app.route('/healthcheck', methods=['GET'])
+def healthcheck():
+    return jsonify({"message": "OK"}, 200)
+
+
+@app.route('/', methods=['GET'])
+def index():
+    return jsonify({"message": "Hello World"}, 200)
+
+
 @app.route('/api/scrape-product', methods=['POST'])
 def scrape_product_endpoint():
     url = request.json.get('url')
