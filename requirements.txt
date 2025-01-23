@@ -1,0 +1,6 @@
+flask
+asyncio
+httpx
+nested_lookup
+parsel
+httpx[http2]
