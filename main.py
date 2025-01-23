@@ -84,12 +84,12 @@ async def scrape_product(url: str) -> dict:
 
 @app.route('/healthcheck', methods=['GET'])
 def healthcheck():
-    return jsonify({"message": "OK"}, 200)
+    return jsonify({"message": "OK", "status": 200})
 
 
 @app.route('/', methods=['GET'])
 def index():
-    return jsonify({"message": "Hello World"}, 200)
+    return jsonify({"message": "Hello World", "status": 200})
 
 
 @app.route('/api/scrape-product', methods=['POST'])
