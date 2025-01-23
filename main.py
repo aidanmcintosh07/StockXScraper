@@ -4,7 +4,7 @@ import httpx
 import re
 import logging
 from nested_lookup import nested_lookup
-from parsel import Selector
+
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
