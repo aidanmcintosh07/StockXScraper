@@ -1,4 +1,5 @@
 from flask import Flask, json, request, jsonify
+from flask_cors import CORS
 import asyncio
 import httpx
 import re
@@ -10,6 +11,7 @@ logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
+CORS(app)
 
 client = httpx.AsyncClient(
     http2=True,
@@ -18,6 +20,7 @@ client = httpx.AsyncClient(
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
         "Accept-Language": "en-US,en;q=0.9",
+
     },
 )
 
@@ -111,3 +114,4 @@ def scrape_product_endpoint():
 
 if __name__ == '__main__':
     app.run(debug=True)
+    app.config['API_SERVER'] = 'https://stockxscraper.onrender.com'
