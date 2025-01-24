@@ -5,3 +5,4 @@ nested_lookup
 parsel
 httpx[http2]
 waitress
+flask_cors
