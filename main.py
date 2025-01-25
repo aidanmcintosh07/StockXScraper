@@ -10,11 +10,6 @@ import random
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
-logger.debug(f"Request Headers: {client.headers}")
-logger.debug(f"Response Headers: {response.headers}")
-logger.debug(f"Response Status Code: {response.status_code}")
-logger.debug(f"Response Content: {response.text}")
-
 
 app = Flask(__name__)
 
@@ -34,6 +29,8 @@ client = httpx.AsyncClient(
         "Accept-Language": "en-US,en;q=0.9",
     },
 )
+
+logger.debug(f"Request Headers: {client.headers}")
 
 
 def extract_next_data(html: str) -> dict:
