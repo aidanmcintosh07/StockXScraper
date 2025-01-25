@@ -1,23 +1,35 @@
 from flask import Flask, json, request, jsonify
-from flask_cors import CORS
 import asyncio
 import httpx
 import re
 import logging
 from nested_lookup import nested_lookup
+import random
 
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
+logger.debug(f"Request Headers: {client.headers}")
+logger.debug(f"Response Headers: {response.headers}")
+logger.debug(f"Response Status Code: {response.status_code}")
+logger.debug(f"Response Content: {response.text}")
+
+
 app = Flask(__name__)
-CORS(app)
+
+USER_AGENTS = [
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+]
 
 client = httpx.AsyncClient(
     http2=True,
     follow_redirects=True,
     headers={
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.53 Safari/537.36",
+        "User-Agent": random.choice(USER_AGENTS),
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
         "Accept-Language": "en-US,en;q=0.9",
     },
@@ -113,4 +125,3 @@ def scrape_product_endpoint():
 
 if __name__ == '__main__':
     app.run(debug=True)
-    app.config['API_SERVER'] = 'https://stockxscraper.onrender.com'
