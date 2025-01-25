@@ -6,5 +6,4 @@ parsel
 httpx[http2]
 waitress
 flask_cors
-random
 # random-user-agent
