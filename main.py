@@ -5,6 +5,9 @@ import re
 import logging
 from nested_lookup import nested_lookup
 import random
+from fake_useragent import UserAgent
+
+ua = UserAgent()
 
 
 logging.basicConfig(level=logging.DEBUG)
@@ -14,7 +17,7 @@ logger = logging.getLogger(__name__)
 app = Flask(__name__)
 
 USER_AGENTS = [
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36",
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0",
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
     "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
@@ -24,13 +27,17 @@ client = httpx.AsyncClient(
     http2=True,
     follow_redirects=True,
     headers={
-        "User-Agent": random.choice(USER_AGENTS),
+        "User-Agent": ua.random,
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
         "Accept-Language": "en-US,en;q=0.9",
     },
 )
 
 logger.debug(f"Request Headers: {client.headers}")
+
+
+async def human_delay(min_delay=2, max_delay=5):
+    await asyncio.sleep(random.uniform(min_delay, max_delay))
 
 
 def extract_next_data(html: str) -> dict:
@@ -65,6 +72,7 @@ def extract_next_data(html: str) -> dict:
 async def scrape_product(url: str) -> dict:
     """Advanced product scraping with multiple fallback strategies"""
     try:
+        await human_delay()
         response = await client.get(url)
         response.raise_for_status()
 
