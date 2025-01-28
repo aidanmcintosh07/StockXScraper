@@ -1,4 +1,4 @@
-# StockXScraper API
+# StockX Scraper API
 
 StockXScraper is an API designed for extracting product data from StockX product pages. This API uses advanced scraping techniques with fallback strategies to ensure accurate data retrieval.
 
