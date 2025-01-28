@@ -2,6 +2,8 @@
 
 StockXScraper is an API designed for extracting product data from StockX product pages. This API uses advanced scraping techniques with fallback strategies to ensure accurate data retrieval.
 
+Also available on RapidAPI: https://rapidapi.com/aidanmcintosh07/api/stockx-scraper-api
+
 ---
 
 ## Features
@@ -95,7 +97,7 @@ StockXScraper is an API designed for extracting product data from StockX product
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/your-username/StockXScraper.git
+   git clone https://github.com/aidanmcintosh07/StockXScraper.git
    cd StockXScraper
    ```
 
