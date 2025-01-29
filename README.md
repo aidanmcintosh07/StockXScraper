@@ -24,7 +24,6 @@ Also available on RapidAPI: https://rapidapi.com/aidanmcintosh07/api/stockx-scra
   ```json
   {
     "message": "OK",
-    "status": 200
   }
   ```
 
@@ -36,7 +35,6 @@ Also available on RapidAPI: https://rapidapi.com/aidanmcintosh07/api/stockx-scra
   ```json
   {
     "message": "Hello World",
-    "status": 200
   }
   ```
 
