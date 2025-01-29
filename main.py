@@ -30,7 +30,7 @@ client = httpx.AsyncClient(
 logger.debug(f"Request Headers: {client.headers}")
 
 
-async def human_delay(min_delay=2, max_delay=5):
+async def human_delay(min_delay=0.5, max_delay=2):
     await asyncio.sleep(random.uniform(min_delay, max_delay))
 
 
@@ -97,12 +97,12 @@ async def scrape_product(url: str) -> dict:
 
 @app.route('/healthcheck', methods=['GET'])
 def healthcheck():
-    return jsonify({"message": "OK", "status": 200})
+    return jsonify({"message": "Ok"})
 
 
 @app.route('/', methods=['GET'])
 def index():
-    return jsonify({"message": "Hello World", "status": 200})
+    return jsonify({"message": "Ok"})
 
 
 @app.route('/api/scrape-product', methods=['POST'])
