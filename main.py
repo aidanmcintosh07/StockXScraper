@@ -6,6 +6,8 @@ import logging
 from nested_lookup import nested_lookup
 import random
 from fake_useragent import UserAgent
+from flask_cors import CORS
+
 
 ua = UserAgent()
 
@@ -15,6 +17,7 @@ logger = logging.getLogger(__name__)
 
 
 app = Flask(__name__)
+CORS(app)
 
 
 client = httpx.AsyncClient(
